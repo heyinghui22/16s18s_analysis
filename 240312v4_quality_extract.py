@@ -49,7 +49,7 @@ def compare_and_output(fasta_file, fastq_file):
 
                 current_lines = []
 
-    print('Output file:', output_file)
+    #print('Output file:', output_file)
 
 
 if __name__ == '__main__':
