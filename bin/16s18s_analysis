@@ -1,0 +1,62 @@
+#!/bin/bash
+##############################################################################################################################################################
+# running 16s18s_analysis 
+##############################################################################################################################################################
+
+VERSION="0.1.0"
+
+help_message () {
+        echo""
+	echo "16s18s_analysis v=$VERSION"
+	echo "Usage: 16s18s_analysis [module] /Path/to/the/folder/"
+	echo ""
+        echo "	Modules:"
+	echo "	16S		Extract 16SrDNA sequence and corresponding v4 region sequence from metagenome or metatranscriptome"
+    echo "	18S		Extract 18SrDNA sequence and corresponding v9 region sequence from metagenome or metatranscriptome"
+
+	echo ""
+	echo "	--help | -h		show this help message"
+	echo "	--version | -v	show 16s18s_analysis version"
+	echo "	--show-config	show where the 16s18s_analysis configuration files are stored"
+        echo "";}
+		
+config_file=$(which config-16s18s_analysis)
+source $config_file
+if [[ $? -ne 0 ]]; then 
+	echo "cannot find config-16s18s_analysis file - something went wrong with the installation!"
+	exit 1
+fi
+
+
+# Check the number of parameters
+if [ "$#" -lt 2 ]; then
+    echo "Usage: 16s18s_analysis <16S|18S> <path_to_data>"
+    exit 1
+fi
+
+# Save the path parameters passed in
+DATA_PATH="$2"
+
+########################################################################################################
+########################     LOADING IN THE PARAMETERS AND RUNNING MODULE       ########################
+########################################################################################################
+
+# Call the script based on the parameters passed in
+if [ "$1" == "16S" ]; then
+	echo 16s18s_analysis-command extract16S ${@:2}
+	time ${PIPES}/running16S.sh "$DATA_PATH"
+elif [ "$1" == "18S" ]; then
+	echo 16s18s_analysis-command extract18S ${@:2}
+	time ${PIPES}/running18S.sh "$DATA_PATH"
+else
+    echo "Please select a proper module of 16s18s_analysis."
+	help_message
+    exit 1
+fi
+
+########################################################################################################
+########################               END OF 16S18S_ANALYSIS PIPELINE                 ########################
+########################################################################################################
+
+
+	

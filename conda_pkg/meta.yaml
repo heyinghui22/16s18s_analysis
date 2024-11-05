@@ -1,0 +1,26 @@
+package:
+  name: 16s18s_analysis
+  version: "0.1.0"
+
+source:
+  url: https://github.com/heyinghui22/16s18s_analysis.git
+
+  
+
+
+
+requirements:
+  build:
+
+  run:
+    - python=3.8
+    - perl
+    - seqkit=2.9.0
+    - hmmer=3.4 
+    - biopython=1.84
+    - pandas=2.2.3
+
+about:
+  home: "https://github.com/heyinghui22/16s18s_analysis"
+  summary: "A package for running 16S rRNA analysis."
+  license: "MIT"

@@ -1,0 +1,8 @@
+# Paths to custon pipelines and scripts of 16s18s_analysis
+mw_path=$(which 16s18s_analysis)
+bin_path=${mw_path%/*}
+SOFT=${bin_path}/16s18s_analysis-scripts
+PIPES=${bin_path}/16s18s_analysis-command
+
+
+
